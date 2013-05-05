@@ -39,7 +39,7 @@ public class Orange extends Verticle
             }
         });
 
-	rm.getWithRegEx("(/|index.html)", new Handler<HttpServerRequest>() {
+	rm.getWithRegEx("(/index.html)", new Handler<HttpServerRequest>() {
 	    public void handle(HttpServerRequest req) 
             {
                 // serve index
