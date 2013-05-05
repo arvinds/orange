@@ -19,36 +19,27 @@ public class Orange extends Verticle
 
 	RouteMatcher rm = new RouteMatcher();
 
-/*
-    rm.get("/details/:user/:id", new Handler<HttpServerRequest>() {
-      public void handle(HttpServerRequest req) {
-                //req.response.headers().put("Content-Type", "text/html; charvalidFiles=UTF-8");
-                //req.response.end("<html><body><h1>Hello from vert.x!</h1></body></html>");
-        req.response.end("User: " + req.params().get("user") + " ID: " + req.params().get("id"));
-      }
 
-    });
-*/
-
+        // serve js and css
         rm.getWithRegEx("/(js|css)/.*", new Handler<HttpServerRequest>() {
 	    public void handle(HttpServerRequest req) 
             {
-                // serve file
                 System.out.println("Serving " + FRONTEND_FILES_PREFIX + req.uri);
                 req.response.sendFile(FRONTEND_FILES_PREFIX + req.uri);
             }
         });
 
-	rm.getWithRegEx("(/index.html)", new Handler<HttpServerRequest>() {
+        // serve index
+	rm.getWithRegEx("(/|index.html)", new Handler<HttpServerRequest>() {
 	    public void handle(HttpServerRequest req) 
             {
-                // serve index
                 System.out.println("Serving " + FRONTEND_FILES_PREFIX + "/index.html");
                 req.response.sendFile(FRONTEND_FILES_PREFIX + "/index.html");
 	    }
 	});
 
 
+        // serve 404
 	rm.getWithRegEx(".*", new Handler<HttpServerRequest>() {
 	    public void handle(HttpServerRequest req) 
             {
@@ -66,5 +57,6 @@ public class Orange extends Verticle
 	});
 
 	vertx.createHttpServer().requestHandler(rm).listen(HTTP_PORT);
+
     }
 }
