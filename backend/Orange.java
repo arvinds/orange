@@ -29,7 +29,7 @@ public class Orange extends Verticle
             }
         });
 
-        // serve index
+        // serve index. regex is forward-slash or index.html
 	rm.getWithRegEx("(/|index.html)", new Handler<HttpServerRequest>() {
 	    public void handle(HttpServerRequest req) 
             {
