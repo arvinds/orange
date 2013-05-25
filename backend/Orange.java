@@ -39,7 +39,7 @@ public class Orange extends Verticle
 	});
 
 
-        // serve 404
+        // serve 404 for everything else
 	rm.getWithRegEx(".*", new Handler<HttpServerRequest>() {
 	    public void handle(HttpServerRequest req) 
             {
