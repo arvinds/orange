@@ -4,3 +4,10 @@
 *.jar
 *.war
 *.ear
+
+# Security Files #
+.crt
+.pass
+
+# Vim Files #
+.swp

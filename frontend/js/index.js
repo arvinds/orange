@@ -1,8 +1,16 @@
 function pollEditor(mainDoc)
 {
     var arr = [mainDoc.getValue()];
-//    document.consoleApplet.compileProgram("asf");
-    document.consoleApplet.setText("asf");
+    var errors = document.consoleApplet.compileProgram(arr);
+    if(errors.length == 0)
+    {
+        document.consoleApplet.setText("No errors were found!");
+    }
+    else
+    {
+        document.consoleApplet.setText("The following errors were found!\n");
+        document.consoleApplet.append("errors: " + errors[0]);
+    }
 }
 
 function run(editSession)
@@ -21,5 +29,10 @@ var setupEditor = function(ace){
 };
 
 
-require.config({ paths: {ace: "js/ace/ace/lib/ace"} });
+require.config({ 
+    paths: {
+        ace: "js/ace/ace/lib/ace"
+    },
+    waitSeconds: 60
+});
 require(["ace/ace"], setupEditor);
