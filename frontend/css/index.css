@@ -10,7 +10,9 @@
     border: 2px solid #000000; 
 }
 
-#consoleApplet{
+#console{
     float: right;
+    eight: 400px;
+    width: 600px;
     border: 2px solid #000000; 
 }

@@ -1,22 +1,13 @@
 function pollEditor(mainDoc)
 {
     var arr = [mainDoc.getValue()];
-    var errors = document.consoleApplet.compileProgram(arr);
-    if(errors.length == 0)
-    {
-        document.consoleApplet.setText("No errors were found!");
-    }
-    else
-    {
-        document.consoleApplet.setText("The following errors were found!\n");
-        document.consoleApplet.append("errors: " + errors[0]);
-    }
+    alert("compile program");
 }
 
 function run(editSession)
 {
     var mainDoc = editSession.getDocument();
-    var timeoutId = setInterval(function(){ pollEditor(mainDoc); }, 100);
+    var timeoutId = setInterval(function(){ pollEditor(mainDoc); }, 1000);
 }
 
 var setupEditor = function(ace){
@@ -27,7 +18,6 @@ var setupEditor = function(ace){
     editSession.setMode("ace/mode/java");
     run(editSession);
 };
-
 
 require.config({ 
     paths: {
