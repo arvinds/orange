@@ -6,7 +6,7 @@ General Todo:
 
 // globals. TODO: put in another file and rquire.js it
 var Orange = {}; // globals
-var Orange.config = {COMPILER_INTERVAL : 1000};
+Orange.config = {COMPILER_INTERVAL : 1000};
 
 
 // init. run: put in another file
@@ -16,7 +16,7 @@ function setup(editSession)
 
     // TODO: do this on doc change of the document using the ace library instead
     Orange.compilerIntervalId = setInterval(compile, Orange.config.COMPILER_INTERVAL);
-    Orange.parse = javaParser.prase;
+    Orange.parser = javaParser;
 }
 
 function compile()
@@ -28,7 +28,7 @@ function compile()
     var results; 
     try
     {
-	results = Orange.parse(val);
+	results = Orange.parser.parse(val);
     }
     // TODO: see if we can differentiate jison and other/general errors
     catch(e) // TODO: investigate way to improve perf hit from hitting catch repeatedly
